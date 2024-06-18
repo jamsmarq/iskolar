@@ -6,8 +6,8 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={{ fontFamily: "Grotesk-Bold", fontSize: 35}}>Welcome to Iskolar</Text>
-      <Text style={{ fontFamily: "Satoshi-Regular", fontWeight: '200',}}>Open up App.js to start working on your app!</Text>
+      <Text style={{ fontFamily: "Grotesk-Bold", fontSize: 35}}>HOME</Text>
+      {/* <Text style={{ fontFamily: "Satoshi-Regular", fontWeight: '200',}}>Open up App.js to start working on your app!</Text> */}
     </View>
   );
 }
