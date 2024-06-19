@@ -2,11 +2,13 @@ import { Stack } from 'expo-router/stack';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
 import * as Font from 'expo-font';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false)
+  const [initialRoute, setInitialRoute] = useState('onboarding')
 
   useEffect(() => {
     async function prepare() {
@@ -22,6 +24,10 @@ export default function RootLayout() {
           'Grotesk-Bold': require('../assets/fonts/Grotesk-Bold.ttf'),
         })
 
+        // Check if onboarding has been completed
+        // const value = await AsyncStorage.getItem('hasSeenOnboarding')
+        // if (value !== null) { setInitialRoute('(tabs)') }
+
         // Artificial two seconds delay
         await new Promise(resolve => setTimeout(resolve, 2000))
       } catch (e) {
@@ -32,21 +38,22 @@ export default function RootLayout() {
     }
 
     prepare()
-
   }, [])
 
   useEffect(() => {
     if (appIsReady) {
       SplashScreen.hideAsync();
+      console.log(initialRoute)
     }
-  }, [appIsReady])
+  }, [appIsReady, initialRoute])
 
   if (!appIsReady) {
     return null
   }
 
   return (
-    <Stack>
+    <Stack initialRouteName={initialRoute}>
+      <Stack.Screen name="onboarding" options={{ headerShown: false }}/>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
     </Stack>
   );
