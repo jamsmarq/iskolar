@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Home, TicketPercent, Bell, CircleUserRound, Menu } from 'lucide-react-native';
+import { Home, TicketPercent, Bell, CircleUserRound, Menu, Search, SlidersHorizontal, Settings } from 'lucide-react-native';
 import React from 'react';
 import { Text, StyleSheet, Pressable, Image } from 'react-native';
 
@@ -29,7 +29,19 @@ const styles = StyleSheet.create({
   },
   headerLeftStyle: {
     marginLeft: 20,
-  }
+  },
+  headerRightStyle: {
+    marginRight: 20,
+  },
+  headerRightHomeStyle: {
+    backgroundColor: "#7F68FD",
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  headingRightDiscoverStyle: {},
+  headingRightInboxStyle: {},
+  headingRightAccountStyle: {},
 })
 
 export default function TabLayout() {
@@ -46,18 +58,6 @@ export default function TabLayout() {
             <Menu size={24} strokeWidth={2.5} color="#000000" />
           </Pressable>
         ),
-        // tabBarLabel: ({ focused, color }) => {
-        //   <Text style={{
-        //     color,
-        //     fontSize: 12,
-        //     fontWeight: 'bold',
-        //     letterSpacing: 0.5,
-        //     marginTop: -5,
-        //     marginBottom: 13
-        //   }}>
-        //     {route.name}
-        //   </Text>
-        // },
         tabBarStyle: styles.tabBarStyle,
         tabBarLabelStyle: styles.tabBarLabelStyle,
         tabBarIconStyle: styles.tabBarIconStyle,
@@ -69,6 +69,7 @@ export default function TabLayout() {
           // headerShown: false,
           headerTitle: () => <Image source={require('@/assets/wordmark.png')} />,
           tabBarIcon: ({ color }) => <Home size={24} strokeWidth={2.5} color={color} />,
+          headerRight: () => <Pressable style={[styles.headerRightStyle, styles.headerRightHomeStyle]}><Text style={{ fontFamily: "Grotesk-Bold", fontSize: 12, color: '#FFFFFF', letterSpacing: 0.5 }}>HELP</Text></Pressable>,
         }}
       />
       <Tabs.Screen
@@ -77,6 +78,11 @@ export default function TabLayout() {
           title: 'Discover',
           // headerShown: false,
           tabBarIcon: ({ color }) => <TicketPercent size={24} strokeWidth={2.5} color={color} />,
+          headerRight: () => (
+            <Pressable style={[styles.headerRightStyle, styles.headingRightDiscoverStyle]}>
+              <Search size={24} strokeWidth={2.5} color="#000000" />
+            </Pressable>
+          ),
         }}
       />
       <Tabs.Screen
@@ -85,6 +91,11 @@ export default function TabLayout() {
           title: 'Inbox',
           // headerShown: false,
           tabBarIcon: ({ color }) => <Bell size={24} strokeWidth={2.5} color={color} />,
+          headerRight: () => (
+            <Pressable style={[styles.headerRightStyle, styles.headingRightDiscoverStyle]}>
+              <SlidersHorizontal size={24} strokeWidth={2.5} color="#000000" />
+            </Pressable>
+          ),
         }}
       />
       <Tabs.Screen
@@ -93,6 +104,11 @@ export default function TabLayout() {
           title: 'Account',
           // headerShown: false,
           tabBarIcon: ({ color }) => <CircleUserRound size={24} strokeWidth={2.5} color={color} />,
+          headerRight: () => (
+            <Pressable style={[styles.headerRightStyle, styles.headingRightDiscoverStyle]}>
+              <Settings size={24} strokeWidth={2.5} color="#000000" />
+            </Pressable>
+          ),
         }}
       />
     </Tabs>
