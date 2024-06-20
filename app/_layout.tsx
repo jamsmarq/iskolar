@@ -8,7 +8,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false)
-  const [initialRoute, setInitialRoute] = useState('onboarding')
+  const [initialRoute, setInitialRoute] = useState('helloa')
 
   useEffect(() => {
     async function prepare() {

@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logoImageView: {
+    opacity: 0,
     alignItems: 'center',
     marginTop: 40,
   },
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function OnboardingScreen1() {
+export default function OnboardingScreen4() {
   const router = useRouter()
 
   return (
@@ -34,18 +35,17 @@ export default function OnboardingScreen1() {
       <View style={styles.logoImageView}>
         <Image source={require('@/assets/wordmark-40.png')} />
       </View>
-      <Image source={require('@/assets/onboarding-1.png')} style={styles.centerImage} resizeMode='cover' />
       <View style={{rowGap: 28, marginBottom: 20}}>
-        <View style={{ rowGap: 16 }}>
-          <Text style={{ fontFamily: "Grotesk-Bold", fontSize: 35 }}>Welcome to Iskolar</Text>
-          <Text style={{ fontFamily: "Satoshi-Regular", fontSize: 20, textAlign: 'center' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
+        <View style={{ rowGap: 16, alignItems: 'flex-start' }}>
+          <Text style={{ fontFamily: "Grotesk-Bold", fontSize: 28 }}>Exclusive Discounts and Deals for Students </Text>
+          <Text style={{ fontFamily: "Satoshi-Regular", fontSize: 20, lineHeight: 32 }}>Duis aute irure dolor in prehenderit in voluptate velit esse cillum dolore.</Text>
         </View>
         <View style={{ rowGap: 12 }}>
-          <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('/onboarding/screen2')}}>
-            <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Let's do it</Text>
+          <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }}>
+            <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Sounds good</Text>
           </Pressable>
           <Pressable style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('(tabs)')}}>
-            <Text style={[styles.default, { fontSize: 16, color: '#541675', fontWeight: 'bold' }]}>Skip onboarding</Text>
+            <Text style={[styles.default, { fontSize: 16, color: '#541675', fontWeight: 'bold' }]}>------------------</Text>
           </Pressable>
         </View>
       </View>
