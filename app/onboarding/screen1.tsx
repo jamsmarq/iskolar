@@ -44,7 +44,7 @@ export default function OnboardingScreen1() {
           <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('/onboarding/screen2')}}>
             <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Let's do it</Text>
           </Pressable>
-          <Pressable style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('(tabs)')}}>
+          <Pressable style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('/userauth/screen1')}}>
             <Text style={[styles.default, { fontSize: 16, color: '#541675', fontWeight: 'bold' }]}>Skip onboarding</Text>
           </Pressable>
         </View>

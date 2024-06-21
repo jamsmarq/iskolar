@@ -8,7 +8,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false)
-  const [initialRoute, setInitialRoute] = useState('helloa')
+  const [initialRoute, setInitialRoute] = useState('/onboarding/screen1')
 
   useEffect(() => {
     async function prepare() {
@@ -29,7 +29,7 @@ export default function RootLayout() {
         // if (value !== null) { setInitialRoute('(tabs)') }
 
         // Artificial two seconds delay
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        // await new Promise(resolve => setTimeout(resolve, 2000))
       } catch (e) {
         console.warn(e)
       } finally {
@@ -54,6 +54,7 @@ export default function RootLayout() {
   return (
     <Stack initialRouteName={initialRoute}>
       <Stack.Screen name="onboarding" options={{ headerShown: false }}/>
+      <Stack.Screen name="userauth" options={{ headerShown: false }}/>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
     </Stack>
   );
