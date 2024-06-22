@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
@@ -42,7 +41,7 @@ export default function OnboardingScreen4() {
           <Text style={{ fontFamily: "Satoshi-Regular", fontSize: 20, lineHeight: 32 }}>Duis aute irure dolor in prehenderit in voluptate velit esse cillum dolore.</Text>
         </View>
         <View style={{ rowGap: 12 }}>
-          <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('/userauth/screen1')}}>
+          <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => {router.push('/userauth/initial')}}>
             <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Sounds good</Text>
           </Pressable>
           <View style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }}>

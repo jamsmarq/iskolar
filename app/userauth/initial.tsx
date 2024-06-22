@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function UserAuthScreen1() {
+export default function UserAuthInitial() {
   const router = useRouter()
 
   return (
@@ -40,7 +39,7 @@ export default function UserAuthScreen1() {
       <Image source={require('@/assets/onboarding-1.png')} style={styles.centerImage} resizeMode='cover' />
       <View style={{ rowGap: 28, marginBottom: 20, width: '100%' }}>
         <View style={{ rowGap: 12 }}>
-          <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => { router.push('/onboarding/screen2') }}>
+          <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => { router.push('/userauth/signup') }}>
             <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Sign in account</Text>
           </Pressable>
           <Pressable style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => { router.push('(tabs)') }}>

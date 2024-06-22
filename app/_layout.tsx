@@ -3,6 +3,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
 import * as Font from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,12 +17,13 @@ export default function RootLayout() {
         // Check if fonts are loaded
         await Font.loadAsync({
           // satoshi
-          'Satoshi-Regular': require('../assets/fonts/Satoshi-Regular.ttf'),
-          'Satoshi-Bold': require('../assets/fonts/Satoshi-Bold.ttf'),
+          'Satoshi-Regular': require('@/assets/fonts/Satoshi-Regular.ttf'),
+          'Satoshi-Medium': require('@/assets/fonts/Satoshi-Medium.ttf'),
+          'Satoshi-Bold': require('@/assets/fonts/Satoshi-Bold.ttf'),
 
           // space grotesk
-          'Grotesk-Regular': require('../assets/fonts/Grotesk-Regular.ttf'),
-          'Grotesk-Bold': require('../assets/fonts/Grotesk-Bold.ttf'),
+          'Grotesk-Regular': require('@/assets/fonts/Grotesk-Regular.ttf'),
+          'Grotesk-Bold': require('@/assets/fonts/Grotesk-Bold.ttf'),
         })
 
         // Check if onboarding has been completed
@@ -52,10 +54,12 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack initialRouteName={initialRoute}>
-      <Stack.Screen name="onboarding" options={{ headerShown: false }}/>
-      <Stack.Screen name="userauth" options={{ headerShown: false }}/>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
-    </Stack>
+    <RootSiblingParent>
+      <Stack initialRouteName={initialRoute}>
+        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+        <Stack.Screen name="userauth" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </RootSiblingParent>
   );
 }
