@@ -7,6 +7,7 @@ import Toast from 'react-native-root-toast';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User, Lock } from 'lucide-react-native';
 import CustomTextInput from '@/components/CustomTextInput';
+import { login } from '@/services/authService';
 
 const styles = StyleSheet.create({
   default: {
@@ -35,9 +36,18 @@ const styles = StyleSheet.create({
 export default function LoginScreen() {
   const [username, setUsername] = useState('')
   const [emailAddress, setEmailAddress] = useState('')
-  const [newPassword, setNewPassword] = useState('')
+  const [password, setPassword] = useState('')
 
   const router = useRouter()
+
+  const handleLogin = async () => {
+    try {
+      const response = await login(username, password)
+      Alert.alert('Login successful', response.access_token)
+    } catch (error: any) {
+      Alert.alert('Login failed', error.message)
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -54,11 +64,11 @@ export default function LoginScreen() {
           <View style={{ width: '100%', rowGap: 28 }}>
             <CustomTextInput Icon={User} placeholder='Type your username' inputMode='text' textContentType='username' onChangeText={setUsername} value={username} label='Username' />
 
-            <CustomTextInput Icon={Lock} placeholder='*************' inputMode='password' textContentType='newPassword' onChangeText={setNewPassword} value={newPassword} label='New password' secureTextEntry={true} />
+            <CustomTextInput Icon={Lock} placeholder='*************' inputMode='password' textContentType='password' onChangeText={setPassword} value={password} label='New password' secureTextEntry={true} />
           </View>
           <View style={{ rowGap: 28, marginBottom: 20, width: '100%' }}>
             <View style={{ rowGap: 12 }}>
-              <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => { router.push('') }}>
+              <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={handleLogin}>
                 <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Login to my account</Text>
               </Pressable>
               <Pressable style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => { router.push('/userauth/signup') }}>
