@@ -56,7 +56,7 @@ export default function SignupScreen() {
 
             <CustomTextInput Icon={Mail} placeholder='Enter your email' inputMode='email' textContentType='emailAddress' onChangeText={setEmailAddress} value={emailAddress} label='Email address' />
 
-            <CustomTextInput Icon={Lock} placeholder='*************' inputMode='password' textContentType='newPassword' onChangeText={setNewPassword} value={newPassword} label='New password' secureTextEntry={true} />
+            <CustomTextInput Icon={Lock} placeholder='*************' inputMode='password' textContentType='newPassword' onChangeText={setNewPassword} value={newPassword} label='New password' />
 
             {/* <View style={{ alignItems: 'flex-start', width: '100%', rowGap: 12, }}>
               <Text style={[styles.default, { fontFamily: "Satoshi-Medium", fontSize: 14 }]}>New password</Text>

@@ -34,15 +34,14 @@ const styles = StyleSheet.create({
 });
 
 export default function LoginScreen() {
-  const [username, setUsername] = useState('')
-  const [emailAddress, setEmailAddress] = useState('')
+  const [logincred, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const router = useRouter()
 
   const handleLogin = async () => {
     try {
-      const response = await login(username, password)
+      const response = await login(logincred, password)
       Alert.alert('Login successful', response.access_token)
     } catch (error: any) {
       Alert.alert('Login failed', error.message)
@@ -62,9 +61,9 @@ export default function LoginScreen() {
             <Text style={{ fontFamily: "Satoshi-Regular", fontSize: 16 }}>Please enter your details to continue.</Text>
           </View>
           <View style={{ width: '100%', rowGap: 28 }}>
-            <CustomTextInput Icon={User} placeholder='Type your username' inputMode='text' textContentType='username' onChangeText={setUsername} value={username} label='Username' />
+            <CustomTextInput Icon={User} placeholder='Type your username' inputMode='text' textContentType='username' onChangeText={setUsername} value={logincred} label='Username' />
 
-            <CustomTextInput Icon={Lock} placeholder='*************' inputMode='password' textContentType='password' onChangeText={setPassword} value={password} label='New password' secureTextEntry={true} />
+            <CustomTextInput Icon={Lock} placeholder='*************' inputMode='password' textContentType='password' onChangeText={setPassword} value={password} label='New password' />
           </View>
           <View style={{ rowGap: 28, marginBottom: 20, width: '100%' }}>
             <View style={{ rowGap: 12 }}>
