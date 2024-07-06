@@ -2,12 +2,12 @@ import { useConfirmExit } from '@/hooks/useConfirmExit';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, Pressable, Alert, BackHandler, TextInput, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, Alert, BackHandler, TextInput, KeyboardAvoidingView, ScrollView, Platform, ActivityIndicator, Keyboard } from 'react-native';
 import Toast from 'react-native-root-toast';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User, Lock } from 'lucide-react-native';
 import CustomTextInput from '@/components/CustomTextInput';
-import { login } from '@/services/authService';
+import { login, testApi } from '@/services/authService';
 
 const styles = StyleSheet.create({
   default: {
@@ -37,22 +37,30 @@ const styles = StyleSheet.create({
 export default function LoginScreen() {
   const [logincred, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [isFormSubmitted, setFormSubmitted] = useState(false)
 
   const router = useRouter()
 
   const handleLogin = async () => {
+    Keyboard.dismiss()
+    setFormSubmitted(true)
+
     try {
       const response = await login(logincred, password)
-      Alert.alert('Login successful', response.access_token)
+      if (response) { router.push('/(tabs)/index')}
+
     } catch (error: any) {
+      // temp: show a friendly error alert
       Alert.alert('Login failed', error.message)
     }
+
+    setFormSubmitted(false)
   }
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0} enabled>
       <StatusBar style="auto" />
-      <ScrollView contentContainerStyle={{ rowGap: 32 }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ rowGap: 32 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'}>
         <View style={styles.logoImageView}>
           <Image source={require('@/assets/wordmark.png')} />
         </View>
@@ -67,9 +75,13 @@ export default function LoginScreen() {
         </View>
         <View style={{ rowGap: 28, marginBottom: 20, width: '100%' }}>
           <View style={{ rowGap: 12 }}>
-            <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={handleLogin}>
-              <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Login to my account</Text>
+            <Pressable style={{ backgroundColor: '#7F68FD', alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={handleLogin} disabled={isFormSubmitted}>
+              {isFormSubmitted
+                ? <ActivityIndicator color='white' size='small' />
+                : <Text style={[styles.default, { fontSize: 16, color: 'white', fontWeight: 'bold' }]}>Login to my account</Text>
+              }
             </Pressable>
+
             <Pressable style={{ alignItems: 'center', paddingVertical: 16, borderRadius: 8 }} onPress={() => { router.push('/userauth/signup') }}>
               <Text style={[styles.default, { fontSize: 16, color: '#541675', fontFamily: 'Satoshi-Medium' }]}>Don't have an account? <Text style={{ fontFamily: 'Satoshi-Bold' }}>Sign up</Text></Text>
             </Pressable>
