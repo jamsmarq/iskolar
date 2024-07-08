@@ -1,5 +1,4 @@
 import { Stack, Tabs } from 'expo-router';
-import { Home, TicketPercent, Bell, CircleUserRound, Menu, Search, SlidersHorizontal, Settings } from 'lucide-react-native';
 import React from 'react';
 import { Text, StyleSheet, Pressable, Image } from 'react-native';
 

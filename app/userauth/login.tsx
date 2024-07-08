@@ -1,13 +1,10 @@
-import { useConfirmExit } from '@/hooks/useConfirmExit';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, Pressable, Alert, BackHandler, TextInput, KeyboardAvoidingView, ScrollView, Platform, ActivityIndicator, Keyboard } from 'react-native';
-import Toast from 'react-native-root-toast';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, Image, Pressable, Alert, KeyboardAvoidingView, ScrollView, Platform, ActivityIndicator, Keyboard } from 'react-native';
 import { User, Lock } from 'lucide-react-native';
 import CustomTextInput from '@/components/CustomTextInput';
-import { login, testApi } from '@/services/authService';
+import { login } from '@/services/authService';
 
 const styles = StyleSheet.create({
   default: {
