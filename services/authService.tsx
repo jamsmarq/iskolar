@@ -1,11 +1,11 @@
 import { API_ENDPOINTS } from "@/config/apiEndpoints"
+import { setSecureAsync } from "@/utils/utils"
 import axios from "axios"
-import * as SecureStorage from "expo-secure-store"
 
 export const login = async (username: string, password: string) => {
   try {
     const response = await axios.post(API_ENDPOINTS.login, { username, password })
-    await SecureStorage.setItemAsync("access_token", response.data.access_token)
+    await setSecureAsync("access_token", response.data.access_token)
 
     return response.data.message
   } catch (error: any) {
@@ -16,6 +16,7 @@ export const login = async (username: string, password: string) => {
 export const signup = async (username: string, email: string, password: string) => {
   try {
     const response = await axios.post(API_ENDPOINTS.signup, { username, email, password })
+    await setSecureAsync("access_token", response.data.access_token)
 
     return response.data.message
   } catch (error: any) {
